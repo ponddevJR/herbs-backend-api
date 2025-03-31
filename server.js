@@ -19,6 +19,7 @@ app.use(morgan("dev"));
 connect();
 
 // routes
+const PORT = process.env.PORT;
 readdirSync("./routes").map((route) => app.use("/api", require("./routes/" + route)));
 
 // ❌ ลบ server.listen() ออก
