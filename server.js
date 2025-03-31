@@ -22,7 +22,7 @@ connect();
 readdirSync("../routes").map((route) => server.use("/api", require("../routes/" + route)));
 
 // ❌ ลบ server.listen() ออก
-// server.listen(PORT, () => console.log("Server is running on port", PORT));
+app.listen(PORT, () => console.log("Server is running on port", PORT));
 
 // ✅ ใช้ API Handler ของ Vercel แทน
-module.exports = app;
+// module.exports = app;
