@@ -5,7 +5,7 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const { readdirSync } = require("fs");
 require("dotenv").config();
-const connect = require("../config/db");
+const connect = require("./config/db");
 
 const server = express();
 
@@ -19,7 +19,7 @@ server.use(morgan("dev"));
 connect();
 
 // routes
-readdirSync("../../routes").map((route) => server.use("/api", require("../../routes/" + route)));
+readdirSync("../routes").map((route) => server.use("/api", require("../routes/" + route)));
 
 // ❌ ลบ server.listen() ออก
 // server.listen(PORT, () => console.log("Server is running on port", PORT));
