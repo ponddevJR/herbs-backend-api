@@ -19,7 +19,7 @@ server.use(morgan("dev"));
 connect();
 
 // routes
-readdirSync("./routes").map((route) => server.use("/api", require("../routes/" + route)));
+readdirSync("../../routes").map((route) => server.use("/api", require("../../routes/" + route)));
 
 // ❌ ลบ server.listen() ออก
 // server.listen(PORT, () => console.log("Server is running on port", PORT));
