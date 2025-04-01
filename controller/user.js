@@ -95,15 +95,23 @@ exports.getSingle = async (req,res) => {
     }
 }
 
-exports.logout = async (req,res) => {
-    try{
-        res.clearCookie("token", { secure: true, sameSite: "none", path: "/" });
-return res.status(200).json({ mes: "ออกจากระบบแล้ว" });
-    }catch(error){
-        res.json({err:"Somethig went wrong at server side0"}).status(500);
-        console.log(error);
+exports.logout = async (req, res) => {
+    try {
+        res.cookie("token", "", {
+            expires: new Date(0),   // ลบ Cookie โดยทำให้หมดอายุ
+            httpOnly: true,         // ป้องกันการเข้าถึงจาก JavaScript ฝั่ง Client
+            secure: true,           // ใช้งานเฉพาะบน HTTPS
+            sameSite: "None",       // รองรับ cross-site cookies
+            path: "/"               // ลบ Cookie ทุก Path
+        });
+
+        return res.status(200).json({ mes: "ออกจากระบบแล้ว" });
+    } catch (error) {
+        console.error(error);
+        return res.status(500).json({ err: "Something went wrong at server side" });
     }
-}
+};
+
 
 exports.updateData = async (req,res) => {
     try {
