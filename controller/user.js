@@ -2,6 +2,7 @@ const userModel = require("../models/user");
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const fs = require('fs');
+const path = require("path");
 
 exports.checkUsername = async (req,res) => {
     try {
@@ -71,7 +72,8 @@ exports.login = async (req,res) => {
             maxAge:1000*60*60*24,
             secure:true,
             httpOnly:true,
-            sameSite:'none'
+            sameSite:'none',
+            path:"/"
         })
         res.json({mes:"เข้าสู่ระบบแล้ว"}).status(200);
     } catch (error) {
