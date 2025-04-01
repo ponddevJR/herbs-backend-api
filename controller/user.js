@@ -95,8 +95,8 @@ exports.getSingle = async (req,res) => {
 
 exports.logout = async (req,res) => {
     try{
-        res.clearCookie('token',{secure:true,httpOnly:true,sameSite:"none"});
-        res.status(200).json({mes:"ออกจากระบบแล้ว"});
+        res.clearCookie("token", { secure: true, sameSite: "none", path: "/" });
+return res.status(200).json({ mes: "ออกจากระบบแล้ว" });
     }catch(error){
         res.json({err:"Somethig went wrong at server side0"}).status(500);
         console.log(error);
